@@ -13,9 +13,9 @@ import {
 
 
 
-import { About } from '../components/About'
-import { SignIn } from '../components/SignIn'
-import  { SignUp }  from '../components/SignUp'
+import  About  from '../components/About'
+import  SignIn  from '../components/SignIn'
+import   SignUp   from '../components/SignUp'
 
 
 
@@ -44,15 +44,9 @@ export default class NavbarComponent extends Component {
 
         <div>
           <Routes>
-            <Route  path="/about">
-            <About />
-            </Route>
-            <Route  path="/signup">
-            <SignUp />
-            </Route>
-            <Route  path="/signin">
-            <SignIn />
-            </Route>
+            <Route path="/about" element={<About />}/>
+            <Route path="/signin" element={<SignIn />}/>
+            <Route path="/signup" element={<SignUp />}/>
             </Routes>
         </div>
 
