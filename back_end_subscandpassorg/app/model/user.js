@@ -1,13 +1,13 @@
-const bcrypt = require("bcryptjs")
-const mongoose = require("mongoose");
+import bcrypt from 'bcrypt';
+
+import mongoose from 'mongoose';
+import {Schema} from 'mongoose';
 
 
 
-const User = mongoose.model(
-  "User",
-  new mongoose.Schema({
-  
-    name:{
+const userSchema = new Schema({
+
+ name:{
       type: String,
       trim: true,
       required: "Name is required"
@@ -17,8 +17,8 @@ const User = mongoose.model(
     email:{
       type: String, 
       trim: true,
-      unique: true,
-      required: "Email is required"
+      unique: true
+      // required: "Email is required"
 
     },
 
@@ -36,12 +36,14 @@ const User = mongoose.model(
 
 
 
-  },{timestamps: true})
-);
+
+},{timestamps:true})
 
 
 userSchema.pre("save",function(next){
   
+
+  let user = this
 
 
   if(User.isModified('password')){
@@ -66,6 +68,7 @@ userSchema.pre("save",function(next){
 
 
 })
-export default User;
 
 
+
+export default mongoose.model("User", userSchema);

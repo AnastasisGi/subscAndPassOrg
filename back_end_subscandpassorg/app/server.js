@@ -9,8 +9,9 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(express.json());
-const bcrypt = require("bcryptjs")
-import User from './model/user'
+
+
+import User from './model/user';
 
 
 
@@ -34,26 +35,25 @@ app.get("/", (req, res) => {
 
 
 app.post("/register", async (req, res) => {
-  console.log(req.body)
+  console.log("in the app.post",req.body)
+
   const {name,email,password} = req.body;
   if(!name) return res.status(400).send("name is required ");
   if(!password && password.length<6) return res.status(400).send("password is required and 6 characters minimum ");
   if(!name) return res.status(400).send("name is required ");
 
-  let userExist =  await User.findOne({email}).exec();
+  const userExist =  await User.findOne({email}).exec();
   if(userExist) return res.status(400).send("A user exists with the same password");
 
 
-   const user = new User(req.body)
+   let user = new User(req.body)
 
     try {
       
       await user.save();
       console.log("user created ",user)
-
     } catch (error) { 
       console.log("there was an error with the creation of the user",error)
-      return res.status(400).send("error with the user creation please try again ")
     }
   
 
