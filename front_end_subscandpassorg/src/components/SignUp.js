@@ -22,7 +22,7 @@ export default class SignUp extends Component {
  }
     handleChangeEmail =(event)=>{
       this.setState({
-        emai:event.target.value
+        email:event.target.value
       })
     }
 
@@ -40,13 +40,15 @@ export default class SignUp extends Component {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password
+
       };
       console.table(this.state)
 
-
       try {
         await axios.post(`http://localhost:9999/register`, {user})
-          .then(res=>{
+        .then(res=>{
+
+          console.log('inside the axios', user);
             console.log(res);
             console.log(res.data);
           })
@@ -68,7 +70,7 @@ export default class SignUp extends Component {
 
           <div className='form-group mb-3'>
             <label className='form-label'> Your name</label>          
-              <input type="test"
+              <input type="name"
                 className='form-control'
                 placeholder='enter name'
                 onChange={this.handleChangeName}></input>

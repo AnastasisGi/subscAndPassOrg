@@ -10,7 +10,6 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-
 import User from './model/user';
 
 
@@ -35,32 +34,24 @@ app.get("/", (req, res) => {
 
 
 app.post("/register", async (req, res) => {
-  console.log("in the app.post",req.body)
 
-  const {name,email,password} = req.body;
-  if(!name) return res.status(400).send("name is required ");
-  if(!password && password.length<6) return res.status(400).send("password is required and 6 characters minimum ");
-  if(!name) return res.status(400).send("name is required ");
+  const name = req.body.user.name;
+  const email = req.body.user.email;
+  const password=req.body.user.password;
+
+
 
   const userExist =  await User.findOne({email}).exec();
   if(userExist) return res.status(400).send("A user exists with the same password");
 
 
-   let user = new User(req.body)
+   let user = new User({name,email,password})
 
     try {
-      
       await user.save();
-      console.log("user created ",user)
     } catch (error) { 
       console.log("there was an error with the creation of the user",error)
     }
-  
-
-
-
-
-
 
 });
 

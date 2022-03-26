@@ -10,15 +10,15 @@ const userSchema = new Schema({
  name:{
       type: String,
       trim: true,
-      required: "Name is required"
+      required: true
 
     },
 
     email:{
       type: String, 
       trim: true,
-      unique: true
-      // required: "Email is required"
+      unique: true,
+      required: true
 
     },
 
@@ -29,7 +29,7 @@ const userSchema = new Schema({
       unique: false,
       min: 6,
       max: 50,
-      required: "Password is required"
+      required: true
 
     }
 
@@ -45,21 +45,14 @@ userSchema.pre("save",function(next){
 
   let user = this
 
-
-  if(User.isModified('password')){
+  if(user.isModified('password')){
 
     return bcrypt.hash(user.password,12,function(error,hash){
-
       if(error){
-        console.log("THere was a problem with the hasing",error)
-      return next();}
-      user.password=hash;
+        console.log(error)
+        return next();}
+        user.password=hash;
       return next();
-
-
-
-
-
     })
   } else {
   return next();}
