@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar } from 'react-bootstrap';
 import NavbarComponent from './components/NavbarComponent';
 
-import  About  from './components/About'
+import  Home  from './components/Home'
 import  SignIn  from './components/SignIn'
 import   SignUp   from './components/SignUp'
 
@@ -24,7 +24,7 @@ function App() {
       <NavbarComponent/>
       <Routes>
             <Route exact path="/signup" element={<SignUp />}/>
-            <Route exact path="/about" element={<About />}/>
+            <Route exact path="/home" element={<Home />}/>
             <Route exact path="/signin" element={<SignIn />}/>
             </Routes>
 </Router>
