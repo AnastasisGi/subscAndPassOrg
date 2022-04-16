@@ -45,23 +45,38 @@ userSchema.pre("save",function(next){
 
   let user = this
 
+
+  // console.log('insdide the schema ---------------------------------', user);
+  // console.log('user passwordgggggggggggggggg', user.password);
+
   if(user.isModified('password')){
 
     return bcrypt.hash(user.password,12,function(error,hash){
       if(error){
-        console.log(error)
+        // console.log("THere was a problem with the hasing2222222222222222222",error)
         return next();}
         user.password=hash;
+        console.log('hasssiiiing ',user.password);
       return next();
     })
   } else {
   return next();}
-
-
-
-
 })
 
+
+
+userSchema.methods.comparePassword = function(password,cb){
+  bcrypt.compare(password, this.password,function(error,isMatch){
+
+    if(error){
+      console.log('there is an error in comparing passwords',error);
+      return cb(error,false);
+    }
+    console.log('PASSWORD MATCHED ',isMatch);
+    return cb(null,isMatch);
+
+  })
+}
 
 
 export default mongoose.model("User", userSchema);

@@ -93,7 +93,7 @@ export default class SignUp extends Component {
                 onChange={this.handlechangePassword}></input>
           </div>  
 
-          <button type='submit'>Submit</button>
+          <button type='submit'>Sign Up</button>
       </form>
   
 
