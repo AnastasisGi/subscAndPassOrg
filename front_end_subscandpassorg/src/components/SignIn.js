@@ -70,7 +70,7 @@ let dispatch;
               payload: res.data
             })  
 
-            history.push("/about");
+            // history.push("/about");
 
           }
           
