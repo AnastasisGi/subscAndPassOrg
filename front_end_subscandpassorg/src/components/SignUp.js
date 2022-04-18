@@ -1,48 +1,23 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 
-export default class SignUp extends Component {
-
-   constructor(props) {
-        super(props);
-        this.state = {
-            name:"",
-            email: "",
-            password:""
-        };
 
 
-  }
-
-  handleChangeName =(event)=>{
-   this.setState({
-   name:event.target.value
- })
- }
-    handleChangeEmail =(event)=>{
-      this.setState({
-        email:event.target.value
-      })
-    }
-
-    handlechangePassword =(event)=>{
-      this.setState({
-      password:event.target.value
-    })
-    }
+const SignUp = () =>{
 
 
 
-   handleSubmit = async (e)=>{
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+
+   const handleSubmit = async (e)=>{
       e.preventDefault();
-      const user ={
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password
+      const user = {name,password,email};
 
-      };
-      console.table(this.state)
 
       try {
         await axios.post(`http://localhost:9999/register`, {user})
@@ -59,21 +34,22 @@ export default class SignUp extends Component {
 
    }
 
- 
- 
-  render() {
-    return (
-    
+
+
+  return(
+
+
 
 <>
-      <form onSubmit={this.handleSubmit} >
+      <form onSubmit={handleSubmit} >
 
           <div className='form-group mb-3'>
             <label className='form-label'> Your name</label>          
               <input type="name"
                 className='form-control'
                 placeholder='enter name'
-                onChange={this.handleChangeName}></input>
+                value={name}
+                onChange={(e)=>setName(e.target.value)}></input>
           </div>  
 
           <div className='form-group mb-3'>
@@ -81,7 +57,8 @@ export default class SignUp extends Component {
               <input type="email"
                 className='form-control'
                 placeholder='enter email'
-              onChange={this.handleChangeEmail}></input>
+                value={email}
+              onChange={(e)=>setEmail(e.target.value)}></input>
           </div>  
 
 
@@ -90,7 +67,8 @@ export default class SignUp extends Component {
               <input type="password"
                 className='form-control'
                 placeholder='enter password'
-                onChange={this.handlechangePassword}></input>
+                value={password}
+                onChange={(e)=>(setPassword(e.target.value))}></input>
           </div>  
 
           <button type='submit'>Sign Up</button>
@@ -99,7 +77,10 @@ export default class SignUp extends Component {
 
 
 </>
-      
-    )
-  }
+  )
 }
+
+export default SignUp;
+
+
+
