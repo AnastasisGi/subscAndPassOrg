@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import axios from 'axios'
 import {useDispatch} from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -13,12 +13,10 @@ const SignIn = () =>{
   const [password, setPassword] = useState("");
 
   const dispatch=useDispatch();
-
+  const navigate = useNavigate();
 
    const handleSubmit = async (e)=>{  
      e.preventDefault();
-     console.log('h1111111');
-    //  console.table(this.state);
      const user ={email,password};
     
 
@@ -26,21 +24,16 @@ const SignIn = () =>{
         await axios.post(`http://localhost:9999/login`, {user})
         .then(res=>{
           
-          // console.info('THESE ARE THE RESPONSE DATA',res.data);
           
-          console.log('HELLLLLLOOOO');
           if(res.data){ 
             window.localStorage.setItem('auth', JSON.stringify(res.data));
             console.log('res.data111111',res.data);
 
            dispatch({
-
-            // console.log('inside the dispatch',payload);
               type: "LOGGED_IN_USER",
               payload: res.data
             })  
-
-            // history.push("/about");
+            navigate("/home");
 
           }
           
