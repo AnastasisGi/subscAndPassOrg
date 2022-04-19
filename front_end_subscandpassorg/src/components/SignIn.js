@@ -27,7 +27,7 @@ const SignIn = () =>{
           
           if(res.data){ 
             window.localStorage.setItem('auth', JSON.stringify(res.data));
-            console.log('res.data111111',res.data);
+            console.log(res.data);
 
            dispatch({
               type: "LOGGED_IN_USER",
