@@ -1,57 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import axios from 'axios'
 import {useDispatch} from 'react-redux';
 
 
 
-  
-export default class SignIn extends Component {
+
+const SignIn = () =>{
 
 
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  constructor(props) {
-     
-        super(props);
-        this.state = {
-            email: "",
-            password:""
-        };
-
-        
-      }
-
-      
-         
-
-      
-      
-      handleChangeEmail =(event)=>{
-        this.setState({
-        email:event.target.value
-      })
-    }
-
-    handlechangePassword =(event)=>{
-      this.setState({
-      password:event.target.value
-    })
-    }
+  const dispatch=useDispatch();
 
 
-
-
-   handleSubmit = async (e)=>{  
+   const handleSubmit = async (e)=>{  
      e.preventDefault();
      console.log('h1111111');
-     console.table(this.state);
-     const user ={
-       email: this.state.email,
-        password: this.state.password
-        
-      };
+    //  console.table(this.state);
+     const user ={email,password};
     
-let dispatch;
+
       try {
         await axios.post(`http://localhost:9999/login`, {user})
         .then(res=>{
@@ -62,7 +32,6 @@ let dispatch;
           if(res.data){ 
             window.localStorage.setItem('auth', JSON.stringify(res.data));
             console.log('res.data111111',res.data);
-         dispatch=useDispatch();
 
            dispatch({
 
@@ -84,17 +53,11 @@ let dispatch;
       }
       
     }
-    
-    
-    
-    render() {
 
 
-      return (
-        
-        
-        <>
-      <form onSubmit={this.handleSubmit} >
+  return(
+      <>
+      <form onSubmit={handleSubmit} >
 
       
 
@@ -103,7 +66,8 @@ let dispatch;
               <input type="email"
                 className='form-control'
                 placeholder='enter email'
-              onChange={this.handleChangeEmail}></input>
+               value={email}
+              onChange={(e)=>{setEmail(e.target.value)}}></input>
           </div>  
 
 
@@ -112,7 +76,8 @@ let dispatch;
               <input type="password"
                 className='form-control'
                 placeholder='enter password'
-                onChange={this.handlechangePassword}></input>
+               value={password}      
+                onChange={(e)=>{setPassword(e.target.value)}}></input>
           </div>  
 
           <button type='submit'>Sign Up</button>
@@ -121,8 +86,16 @@ let dispatch;
 
 
 </>
-      
-    )
-  }
+
+
+  )
+
+
 }
+
+
+export default SignIn;
+
+
+
 
