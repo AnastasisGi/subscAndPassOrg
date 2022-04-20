@@ -1,7 +1,7 @@
   import {Navbar,Nav,Container} from 'react-bootstrap';
-import React, { Component } from 'react';
-import {Routes} from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 import {
@@ -11,8 +11,20 @@ import {
 } from "react-router-dom";
 
 const NavbarComponent = () =>{
-
+  const dispatch=useDispatch();
   const {auth} = useSelector((state)=>({...state}));
+
+  const navigate=useNavigate();
+
+  const logout = () =>{
+    dispatch({
+      type: "LOGOUT",
+      payload:null
+    });
+    window.localStorage.removeItem("auth");
+    navigate("/signin");
+  }
+
 
 return (
 <>      
@@ -39,7 +51,13 @@ return (
 
               {auth !== null && (<>
               
-              <Nav.Link exact="true" as={Link} to={"/home"}>Home</Nav.Link>
+              <Nav.Link exact="true" as={Link} to={"/home"}>Home
+              
+              
+              
+              
+              </Nav.Link>
+              <Nav.Link as={Link} to={"/signin"} onClick={logout} >Logout</Nav.Link>
 
               </>)}
 

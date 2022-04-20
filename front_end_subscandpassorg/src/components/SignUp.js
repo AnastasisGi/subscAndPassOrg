@@ -13,7 +13,6 @@ const SignUp = () =>{
   const [password, setPassword] = useState("");
 
 
-
    const handleSubmit = async (e)=>{
       e.preventDefault();
       const user = {name,password,email};
