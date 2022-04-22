@@ -33,7 +33,7 @@ const SignIn = () =>{
               type: "LOGGED_IN_USER",
               payload: res.data
             })  
-            navigate("/home");
+            navigate("/dashboard");
 
           }
           
