@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar } from 'react-bootstrap';
@@ -9,7 +8,7 @@ import  Home  from './components/Home'
 import  SignIn  from './components/SignIn'
 import   SignUp   from './components/SignUp'
 import Dashboard from './components/DashBoard';
-
+import Dashboardnav from './components/Dashboardnav';
 import {
   BrowserRouter as Router,
   Route,
@@ -30,6 +29,12 @@ function App() {
             <Route exact path="/dashboard" element={
               <PrivateRoute>
                 <Dashboard/>
+              </PrivateRoute>
+
+            }/>
+             <Route exact path="/dashboard" element={
+              <PrivateRoute>
+                <Dashboardnav/>
               </PrivateRoute>
 
             }/>

@@ -1,3 +1,6 @@
+import Dashboardnav from "./Dashboardnav";
+
+
 const Dashboard = () => {
 
 
@@ -6,6 +9,7 @@ const Dashboard = () => {
         <>
         <div>
         <h1>This is the Dashboard page</h1>
+           <Dashboardnav/> 
         </div>
         </>
     )

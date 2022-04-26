@@ -61,8 +61,7 @@ app.post("/login", async (req, res) => {
             const token = jwt.sign({_id:user._id.toString()}, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: "10h"
           });
-          const refreshToken = jwt.sign({_id:user._id.toString()}, process.env.REFRESH_TOKEN_SECRET)
-            res.json({token,refreshToken,user:{
+            res.json({token,user:{
             name:user.name,
             email:user.email,
             upDatedAt:user.upDatedAt,
