@@ -14,6 +14,8 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import Subscriptions from './components/Subscriptions';
+import Credentials from './components/Credentials';
 
 
 function App() {
@@ -32,14 +34,19 @@ function App() {
               </PrivateRoute>
 
             }/>
-             <Route exact path="/dashboard" element={
+             <Route exact path="/subscriptions" element={
               <PrivateRoute>
-                <Dashboardnav/>
+                <Subscriptions/>
               </PrivateRoute>
 
             }/>
 
+            <Route exact path="/credentials" element={
+              <PrivateRoute>
+                <Credentials/>
+              </PrivateRoute>
 
+            }/>
 
             </Routes>
 </Router>

@@ -4,21 +4,21 @@ const Dashboardnav =()=>{
 
 
   const activepath = window.location.pathname;
-
-    return (
-
+  // console.log('actipath', activepath);
+  return (
+    
         <ul className='nav nav-tabs'>
 
         <li className='nav-item'>
           <Link
-            className={`nav-link active ${activepath==="/credentials" && "active"}`}
+            className={`nav-link ${activepath==="/credentials" && "active"}`}
             to="/credentials"
           >Credentials</Link>
         </li>
 
         <li className='nav-item'>
           <Link
-            className={`nav-link active ${activepath==="/subscriptions" && "active"}`}
+            className={`nav-link ${activepath==="/subscriptions" && "active"}`}
             to="/subscriptions"
           >Subscriptions</Link>
         </li>
