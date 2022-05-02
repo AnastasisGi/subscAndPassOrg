@@ -40,9 +40,11 @@ const SignUp = () =>{
 
 
 <>
-      <form onSubmit={handleSubmit} >
+      <form 
+     
+      onSubmit={handleSubmit} >
 
-          <div className='form-group mb-3'>
+          <div className='form-group mb-3 my-5'>
             <label className='form-label'> Your name</label>          
               <input type="name"
                 className='form-control'
