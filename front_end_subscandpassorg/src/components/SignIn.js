@@ -14,22 +14,22 @@ const SignIn = () => {
 		e.preventDefault();
 		const user = { email, password };
 
-		try {
-			await axios.post(`http://localhost:9999/login`, { user }).then((res) => {
-				if (res.data) {
-					window.localStorage.setItem('auth', JSON.stringify(res.data));
-					console.log(res.data);
+		// try {
+		// 	await axios.post(`http://localhost:9999/login`, { user }).then((res) => {
+		// 		if (res.data) {
+		// 			window.localStorage.setItem('auth', JSON.stringify(res.data));
+		// 			console.log(res.data);
 
-					dispatch({
-						type: 'LOGGED_IN_USER',
-						payload: res.data,
-					});
-					navigate('/dashboard');
-				}
-			});
-		} catch (error) {
-			console.log(error);
-		}
+		// 			dispatch({
+		// 				type: 'LOGGED_IN_USER',
+		// 				payload: res.data,
+		// 			});
+		// 			navigate('/dashboard');
+		// 		}
+		// 	});
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 	};
 
 	return (

@@ -12,20 +12,20 @@ const NewUserNameAndPassword = () => {
 
 	const handleSubmit = async (e) => {
 		// do the submit stuff
-		console.table('table', details);
 		e.preventDefault();
 		setDetails({ ...details, [e.target.name]: e.target.value });
 
-		// try {
-		// 	await axios
-		// 		.post(`http://localhost:9999/registerNewCredentials`, { details })
-		// 		.then((res) => {
-		// 			console.log(res.data);
-		// 			console.table('table', res.data);
-		// 		});
-		// } catch (error) {
-		// 	console.log('error', error);
-		// }
+		console.table('table', details);
+		try {
+			await axios
+				.post(`http://localhost:9999/registerNewCredentials`, { details })
+				.then((res) => {
+					console.log(res.data);
+					console.table('table', res.data);
+				});
+		} catch (error) {
+			console.log('error', error);
+		}
 	};
 
 	const NewUserNameAndPasswordForm = () => {
